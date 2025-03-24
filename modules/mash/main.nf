@@ -5,7 +5,7 @@ Group2 [ Writing Mash module for taxonomic classification ] --add your name belo
 ----Developers-----
  
 -Adolf Mukama
--
+-Arnold Lambisia
 
 
 */
