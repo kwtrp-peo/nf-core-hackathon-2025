@@ -3,7 +3,7 @@
 # MASH (Minimizer-based Alignment Sketch)
 A rapid tool applied in genome and metagenome distance estimation using MinHash algorithm. 
 
-Mash utilizes a sketching algorithm to breakdown large genomic data into k-mers to compare genomic distances and classify closely related taxonomic groups
+Mash utilizes a sketching algorithm to breakdown large genomic data into k-mers to compare genomic distances using and classify closely related taxonomic groups
 
 ## Table of Contents
 - [Usage](#Usage)
