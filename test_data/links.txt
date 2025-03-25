@@ -1,0 +1,9 @@
+# Link to human genome
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.39_GRCh38.p13/GCF_000001405.39_GRCh38.p13_genomic.fna.gz
+
+# Link to mash db
+wget https://gembox.cbcb.umd.edu/mash/refseq.genomes.k21s1000.msh
+
+# tutorial 
+https://mash.readthedocs.io/en/latest/tutorials.html
+
