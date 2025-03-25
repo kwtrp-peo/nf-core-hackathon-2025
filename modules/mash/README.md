@@ -4,13 +4,62 @@
 A rapid tool applied in genome and metagenome distance estimation using MinHash algorithm. 
 
 ## Table of Contents
-- [Installation](#Installation)
 - [Usage](#Usage)
 
-  ## Installation
-  1. Install mash by running the folloeing command:
-  2. Iport the module to the main pipeline directory:
+   ## Usage
+
+```
+#!/usr/bin/env nextflow
+ 
+/*
+defining the needed params for the workflow
+/*
+params.reads="/home/parcelli/nf_core_hack_2025/nf-core-hackathon-2025/test_data/non_human_reads/*.fastq"
+params.database="/home/parcelli/nf_core_hack_2025/nf-core-hackathon-2025/refseq.genomes.k21s1000.msh"
+ 
+input_ch=Channel.fromPath(params.reads)
+input_db= Channel.value(params.database)
+ 
+// Defining the process for the mash workflow
+process Mash_taxonomy{
+ 
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'oras://community.wave.seqera.io/library/mash:2.3--c57e992e33e8b841' :
+        'community.wave.seqera.io/library/mash:2.3--1b742dfaa6515b6e' }"
+    
+    publishDir 'results/mash', mode:'copy'
+ 
+    input:
+    tuple val(id), path(reads)
+    val database
+ 
+    output:
+    path "${id}_screen.tab", emit: tab
+    path "${id}_screen.tab", emit: txt
+ 
+    
+    script:
+ 
+    //def prefix = ${reads}.baseName
+    """
+    mash screen -w -p 4 ${database} ${reads} > ${id}_screen.tab
+    sort -gr ${id}_screen.tab > ${id}_mash_out.txt
+ 
+    """
+ 
+}
+ 
+workflow{
+        Mash_taxonomy(input_ch
+                        .map{file ->
+                        def id = file.baseName
+                        return [id,file]
+                        }, input_db)
+}
+ 
+```
+
   
-  ## Usage
+
   
   
