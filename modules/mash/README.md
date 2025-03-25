@@ -6,9 +6,7 @@ A rapid tool applied in genome and metagenome distance estimation using MinHash 
 Mash utilizes a sketching algorithm to breakdown large genomic data into k-mers, compare genomic distances and classify closely related taxonomic groups
 
 ## Input 
-| name | |description|
-|------| |-----------|
-| ```params.reads ``` | |parameter containing the input path, with the required reads|
+```params.reads ``` parameter containing the input path, with the required reads
 params.database 
 
 ## Output
