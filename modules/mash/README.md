@@ -6,10 +6,11 @@ A rapid tool applied in genome and metagenome distance estimation using MinHash 
 Mash utilizes a sketching algorithm to breakdown large genomic data into k-mers, compare genomic distances and classify closely related taxonomic groups
 
 ## Input 
-```params.reads ``` &rarr; parameter containing the input path, with the required reads
-params.database 
+```params.reads ``` &rarr; parameter defining the input path, with the required reads
+```params.database``` &rarr; parameter defining the input path, with the required refseq database 
 
 ## Output
+```mash_out.tab``` &rarr; mash report containing the 
 
 ```
 #!/usr/bin/env nextflow
