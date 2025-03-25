@@ -29,11 +29,11 @@ process MASHSCREEN {
 
     tuple val(sample_id), path(non_human_reads) //gets non_human_reads fastq files from the  minimap process
 
-	  output:
-	  path "results/${sample_id}.tab", emit: results	// Mash distance output
-	  path "results/${sample_id}_taxonomy.tsv", emit: results		// Final taxonomic classification
-	  path "results/${sample_id}_summary.html", emit: results        // Summary report
-
+    output:
+    path "results/${sample_id}.tab"                          , emit: results // Mash distance output
+    path "results/${sample_id}_taxonomy.tsv"                 , emit: results // Final taxonomic classification
+    path "results/${sample_id}_summary.html"                 , emit: results // Summary report
+    path "versions.yml"                                      , emit: versions
 
     script:
 
@@ -41,5 +41,12 @@ process MASHSCREEN {
     mkdir results
 
     """
+    
 
+
+
+   cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        mash: \$( mash --version )
+    END_VERSIONS
 }
