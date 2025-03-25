@@ -20,19 +20,8 @@ process download_database {
 
     script:
     """
+    echo "Downloading a database"
     wget -O default_db.msh ${database}
-    """
-}
-process process_data {
-    input:
-    val database
-
-    output:
-    stdout
- 
-    script:
-    """
-    echo "Using database: $database"
     """
 }
 workflow {
@@ -40,14 +29,14 @@ workflow {
     
     if (!params.skip_dbdownload) {
         db_ch= download_database(params.database)
-        process_data(db_ch)
+        db_ch.view()
+        //process_data(db_ch)
     
             } 
         else {
-             db_ch = Channel.value(params.db)
-        process_data(db_ch)
-        process_data.out.view()
-   
+            db_ch = Channel.value(params.db)
+            db_ch.view()
+
 
         }
 }
