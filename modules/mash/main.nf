@@ -10,7 +10,7 @@ Group2 [ Writing Mash module for taxonomic classification ] --add your name belo
 
 */
 
-process MASH {
+process MASHSCREEN {
 	
 
 	conda "${moduleDir}/environment.yml"
