@@ -3,6 +3,8 @@
 # MASH (Minimizer-based Alignment Sketch)
 A rapid tool applied in genome and metagenome distance estimation using MinHash algorithm. 
 
+Mash utilizes a sketching algorithm to breakdown large genomic data into k-mers to compare genomic distances and classify closely related taxonomic groups
+
 ## Table of Contents
 - [Usage](#Usage)
 
@@ -11,9 +13,9 @@ A rapid tool applied in genome and metagenome distance estimation using MinHash 
 ```
 #!/usr/bin/env nextflow
  
-/*
-defining the needed params for the workflow
-/*
+
+// Defining the needed params for the workflow
+
 params.reads="/home/parcelli/nf_core_hack_2025/nf-core-hackathon-2025/test_data/non_human_reads/*.fastq"
 params.database="/home/parcelli/nf_core_hack_2025/nf-core-hackathon-2025/refseq.genomes.k21s1000.msh"
  
