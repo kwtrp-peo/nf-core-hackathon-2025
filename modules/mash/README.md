@@ -7,6 +7,7 @@ Mash utilizes a sketching algorithm to breakdown large genomic data into k-mers,
 
 ## Input 
 ```params.reads ``` &rarr; parameter defining the input path, with the required reads
+
 ```params.database``` &rarr; parameter defining the input path, with the required refseq database 
 
 ## Output
