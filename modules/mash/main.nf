@@ -25,15 +25,15 @@ process MASHSCREEN {
 
 
 	output:
-path "results/${sample_id}_mash_distances.tab", emit: results	// Mash distance output
-path "results/${sample_id}_taxonomy.tsv", emit: results		// Final taxonomic classification
-path "results/${sample_id}_summary.html", emit: results        // Summary report
+	path "results/${sample_id}.tab", emit: results	// Mash distance output
+	path "results/${sample_id}_taxonomy.tsv", emit: results		// Final taxonomic classification
+	path "results/${sample_id}_summary.html", emit: results        // Summary report
 
 
 	script:
 
 	"""
-mkdir results
+	mkdir results
 
 	"""
 
