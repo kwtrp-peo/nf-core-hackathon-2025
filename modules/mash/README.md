@@ -5,10 +5,12 @@ A rapid tool applied in genome and metagenome distance estimation using MinHash 
 
 Mash utilizes a sketching algorithm to breakdown large genomic data into k-mers, compare genomic distances and classify closely related taxonomic groups
 
-## Input 
-```params.reads ``` &rarr; parameter defining the input path, with the required reads
+##Usage 
 
-```params.database``` &rarr; parameter defining the input path, with the required refseq database 
+## Input 
+```non_human_reads ``` &rarr; parameter defining the input path, with the required reads
+
+```mash.db``` &rarr; parameter defining the input path, with the required refseq database 
 
 ## Output
 ```mash.results.txt``` &rarr; mash report containing taxonomic information e.g. [identity, shared-hashes, query-comment] 
