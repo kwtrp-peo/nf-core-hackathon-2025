@@ -18,9 +18,9 @@ process MASH {
 
 
 	output:
-path "results/${sample_id}_mash_distances.tab"  // Mash distance output
-path "results/${sample_id}_taxonomy.tsv"        // Final taxonomic classification
-path "results/${sample_id}_summary.html"        // Summary report
+path "results/${sample_id}_mash_distances.tab", emit: results	// Mash distance output
+path "results/${sample_id}_taxonomy.tsv", emit: results		// Final taxonomic classification
+path "results/${sample_id}_summary.html", emit: results        // Summary report
 
 
 	script:
