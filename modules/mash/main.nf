@@ -26,16 +26,16 @@ process MASHSCREEN {
     publishDir params.mash_output_dir, mode: 'copy'
     
     input:
-    tuple val(sample_id), path(non_human_reads) //gets input fastq data from non-human reads from the minimap process
+
+    tuple val(sample_id), path(non_human_reads) //gets non_human_reads fastq files from the  minimap process
 
     output:
 
 
+    script:
 
-	script:
+    """
 
-	"""
-
-	"""
+    """
 
 }
