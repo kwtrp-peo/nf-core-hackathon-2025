@@ -4,7 +4,7 @@ nextflow.enable.dsl=2
 
 /*
 
-Group2 [ Writing Mash module for taxonomic classification ] --add your name below
+Group2 [ Writing Summary module for mash output ] --add your name below
 
 ----Developers-----
  
@@ -21,7 +21,7 @@ process SUMMARY {
     tag "Summarizing MASH results"
 
     input:
-    path mash_out_dir
+    path(files, stageAs: "folder/*")
     path summary_out_dir
 
     output:
@@ -29,6 +29,8 @@ process SUMMARY {
 
     script:
     """
-    python process_results.py --input_dir $mash_out_dir --output_file ${summary_out_dir}/combined_results.tsv
+    mkdir mash_out_dir
+    mv ${files}/* mash_out_dir
+    python process_results.py --input_dir mash_out_dir --output_file ${summary_out_dir}/combined_results.tsv
     """
 }
