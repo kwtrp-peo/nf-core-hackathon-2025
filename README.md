@@ -21,4 +21,4 @@ The pipeline is built using [Nextflow](https://github.com/nextflow-io/nextflow),
 
 To set up, make sure you have: 
 
-**Docker/Singularity** container platforms that help you install and run various tools in this workflow
+**Docker/Singularity**, container platforms that help you install and run various tools in this workflow
