@@ -2,28 +2,30 @@
 
 ## Overview
 
-The main objective of the indexing module is to provide a link for the downloading the latest human genome and then perform indexing using minimap2 outputting a file 
-with **_.mmi extension_**. The generated index file is used for efficient sequence alignment in downstream processes.
+The main objective of this module is to perform indexing of human genome reference file using `minimap2 software` and the output is an index file 
+with **_.mmi_** extension. 
+
+The input raw reads from collate module are mapped against the generated index file using the `minimap2` to filter out human reads.
 
 ## Parameters
 
 ### Input parameters
 
-Path to the location of the human genome fasta file (**_with .fna or .fa extension_**).
+A path to the location of the human genome reference fasta file (with, **_.fasta, .fna, or .fa_** extension).
 
 ## Workflow
 
-**Preprocessing**: Downloading the latest reference human genome
+**Step 1**: Downloads the latest human genome reference.
 
-**Indexing**: Use minimap2 to generate an indexed reference genome file.
+**Step 2**: Indexing Uses `minimap2` to generate an indexed reference genome file.
 
 ## Process : Indexing
 
 ### Input
-Human genome (Path to the location of the downloaded reference file)
+- `Path/to/Human_genome_ref`; a path to the location of the downloaded reference file.
 
 ### Output
-out put dir for Indexed human genome (with **_.mmi extension_**)
+- An indexed file of  human genome reference (with **_.mmi_**  extension)
 
 ### Version
 - current version: 2.28
