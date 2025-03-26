@@ -16,7 +16,6 @@ workflow {
 
   input_ch=Channel.fromPath(params.test_data)
 
-  // collate_ch=COLLATE(input_ch).flatten()
 
         COLLATE(input_ch)
                         .flatten()
@@ -33,9 +32,9 @@ workflow {
 
     //indexed_ch.view()
 
-    //indexed_reads_ch=collate_ch.combine(indexed_ch)
+    indexed_reads_ch=collate_ch.combine(indexed_ch)
 
-    //MAPPING(indexed_reads_ch)
+    MAPPING(indexed_reads_ch)
 
 
 
