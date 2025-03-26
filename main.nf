@@ -4,38 +4,41 @@ include { MASHSCREEN } 		from './modules/mash/mashscreen/main.nf'
 include { SUMMARY } 		from './modules/summary_module/main.nf'
 include { COLLATE }      from   './modules/collate/main.nf'
 include { HUMAN_INDEX }  from   './modules/minimap2/index/main.nf'
-//include { MAPPING }      from   './modules/minimap2/non_human_reads/main.nf'
+include { MAPPING }      from   './modules/minimap2/non_human_reads/main.nf'
 
 
 
 // workflow
 
 workflow {
-    
+
+
   input_ch = Channel.fromPath(params.non_human_reads)
 
+// Define input test data 
   input_ch=Channel.fromPath(params.test_data)
 
-  // collate_ch=COLLATE(input_ch).flatten()
-
-        COLLATE(input_ch)
-                        .flatten()
-                        .map{ file -> def sample_id=file.getBaseName(2)
-                        return [sample_id, file]}
-                        .set{collate_ch}
+// Collate input data from test data and output as a list of sample_id and file path
+     COLLATE(input_ch)
+                    .flatten()
+                    .map{ file -> def sample_id=file.getBaseName(2)
+                    return [sample_id, file]}
+                    .set{collate_ch}
                         
 
-   //collate_ch.view()
-
+// Define human reference genome path 
     human_ref_ch=Channel.fromPath(params.human_genome)
 
+// Index human reference genome
     indexed_ch=HUMAN_INDEX(human_ref_ch)
 
-    //indexed_ch.view()
 
-    //indexed_reads_ch=collate_ch.combine(indexed_ch)
+// combine indexed reads output with the collated input data
+    indexed_reads_ch=collate_ch.combine(indexed_ch)
 
-    //MAPPING(indexed_reads_ch)
+
+// Retrieve unmapped reads 
+    MAPPING(indexed_reads_ch)
 
 
 
@@ -46,7 +49,8 @@ workflow {
         db_ch= MASH_DB_DOWNLOAD(params.url)
         db_ch.view()
         MASHSCREEN(
-            input_ch.map{
+            MAPPING.out
+                .map{
                 file ->
                 def sample_id = file.baseName
                 return [sample_id,file]
@@ -57,19 +61,20 @@ workflow {
         else {
             db_ch = Channel.value(params.mash_sketch)
             MASHSCREEN(
-            input_ch.map{
+            MAPPING.out
+                .map{
                 file ->
                 def sample_id = file.baseName
                 return [sample_id,file]
             },
             db_ch)
  
-    SUMMARY(MASHSCREEN.out
+    
+        }
+        SUMMARY(MASHSCREEN.out
                 .results
                 .collect()
                 .view()
                 )
-        }
 
-       // SUMMARY(params.test_sum)
 }
