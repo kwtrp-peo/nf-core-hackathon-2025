@@ -1,4 +1,4 @@
-![Alt text for the image](https://github.com/amutheo/nf-core-hackathon-2025/blob/amutheo-patch-1/modules/mash/Mash..png)
+![Alt text for the image](https://github.com/amutheo/nf-core-hackathon-2025/blob/dev/modules/mash/mashscreen/Mash..png)
 
 # MASH (Minimizer-based Alignment Sketch)
 ## Overview 
