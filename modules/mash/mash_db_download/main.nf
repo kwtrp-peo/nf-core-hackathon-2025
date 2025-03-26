@@ -2,14 +2,12 @@
 /*
 Creating a nextflow pipeline to downloaded a database
 */
-//set a default value to null
 
-params.skip_dbdownload = false
-params.db = null
-params.database = "https://gembox.cbcb.umd.edu/mash/refseq.genomes.k21s1000.msh"
+process MASH_DB_DOWNLOAD {
 
-process download_database {
-    input :
+    tag "downloading mash database"
+
+    input:
     val database
     
     output:
@@ -24,19 +22,4 @@ process download_database {
     wget -O default_db.msh ${database}
     """
 }
-workflow {
-    // Conditional database selection
-    
-    if (!params.skip_dbdownload) {
-        db_ch= download_database(params.database)
-        db_ch.view()
-        //process_data(db_ch)
-    
-            } 
-        else {
-            db_ch = Channel.value(params.db)
-            db_ch.view()
 
-
-        }
-}
