@@ -39,6 +39,8 @@ process MASHSCREEN {
 
     """
     mkdir results
+    mash screen -w -p 4 ${database} ${reads} > ${id}_screen.tab
+    sort -gr ${id}_screen.tab > ${id}_mash_out.txt
 
     """
     
