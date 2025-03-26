@@ -20,33 +20,36 @@ process MASHSCREEN {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        	'oras://community.wave.seqera.io/library/mash:2.3--c57e992e33e8b841' :
-        	'community.wave.seqera.io/library/mash:2.3--1b742dfaa6515b6e' }"
+        	'oras://community.wave.seqera.io/library/mash:2.3--1c2e0d1323ded1d2' :
+        	'community.wave.seqera.io/library/mash:2.3--1c2e0d1323ded1d2' }"
     
-    publishDir params.mash_output_dir, mode: 'copy'
+    publishDir "${params.mash_out_dir}", mode: 'copy'
     
     input:
 
     tuple val(sample_id), path(non_human_reads) //gets non_human_reads fastq files from the  minimap process
+    val database
 
     output:
-    path "results/${sample_id}.tab"                          , emit: results // Mash distance output
-    path "results/${sample_id}_taxonomy.tsv"                 , emit: results // Final taxonomic classification
-    path "results/${sample_id}_summary.html"                 , emit: results // Summary report
-    path "versions.yml"                                      , emit: versions
+    path "${sample_id}.txt"                          , emit: results // Mash distance output
+    path "versions.yml"                              , emit: versions, optional: true
 
     script:
 
     """
-    mkdir results
+    
+    mash screen -w ${database} ${non_human_reads} > ${sample_id}.tab
+    sort -gr ${sample_id}.tab > ${sample_id}.txt
 
     """
     
 
 
-
+   stub:
+   """
    cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         mash: \$( mash --version )
     END_VERSIONS
+   """
 }

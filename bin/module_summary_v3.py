@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #import modules
 import pandas as pd
 import os
@@ -49,9 +50,9 @@ for file in files:
         print(f"Error processing {file}: {e}")
 
 # Save all results to a single TSV file
-if not combined_df.empty:
-    os.makedirs(os.path.dirname(output_file), exist_ok=True)  # Ensure output directory exists
+#if not combined_df.empty:
+    #os.makedirs(os.path.dirname(output_file), exist_ok=True)  # Ensure output directory exists
     combined_df.to_csv(output_file, sep="\t", index=False)
     print(f"Combined results saved to: {output_file}")
-else:
-    print("No valid data to save.")
+#else:
+    #print("No valid data to save.")
