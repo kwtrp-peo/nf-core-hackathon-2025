@@ -11,6 +11,6 @@ The pipeline is built using [Nextflow](https://github.com/nextflow-io/nextflow),
 3. Read mapping and removal of human reads (```Minimap```)
 4. Taxonomic classification (Mash)
    
-   . Download the mash database if not provided
+   . Download mash database if not provided
    
    . Screen and taxonomically classify the reads
