@@ -1,5 +1,5 @@
-![image](https://github.com/user-attachments/assets/f64cc2f3-6614-47d0-abac-e7a9f9b0e428)# nf-core-hackathon-2025
-Kilifi, Kenya Site 2025 Hackathon Repository
+
+# Kilifi, Kenya Site 2025 Hackathon Repository
 
 This project utilizes raw fastq barcode reads, maps, screens and drops human reads (host reads) and taxonomically classifies the resulting reads
 
