@@ -16,3 +16,5 @@ The pipeline is built using [Nextflow](https://github.com/nextflow-io/nextflow),
    . Screen and taxonomically classify the reads
 
 # Quick Start
+
+## Prerequisites 
