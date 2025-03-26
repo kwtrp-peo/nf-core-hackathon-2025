@@ -9,8 +9,10 @@ The pipeline is built using [Nextflow](https://github.com/nextflow-io/nextflow),
 1. Download human genome ()
 2. Human genome indexing (```Minimap```)
 3. Read mapping and removal of human reads (```Minimap```)
-4. Taxonomic classification (Mash)
+4. Taxonomic classification (```Mash```)
    
    . Download mash database if not provided
    
    . Screen and taxonomically classify the reads
+
+# Quick Start
