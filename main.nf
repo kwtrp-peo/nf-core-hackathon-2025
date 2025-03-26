@@ -11,29 +11,33 @@ include { MAPPING }      from   './modules/minimap2/non_human_reads/main.nf'
 // workflow
 
 workflow {
-    
+
+
   input_ch = Channel.fromPath(params.non_human_reads)
 
+// Define input test data 
   input_ch=Channel.fromPath(params.test_data)
 
-
-        COLLATE(input_ch)
-                        .flatten()
-                        .map{ file -> def sample_id=file.getBaseName(2)
-                        return [sample_id, file]}
-                        .set{collate_ch}
+// Collate input data from test data and output as a list of sample_id and file path
+     COLLATE(input_ch)
+                    .flatten()
+                    .map{ file -> def sample_id=file.getBaseName(2)
+                    return [sample_id, file]}
+                    .set{collate_ch}
                         
 
-   //collate_ch.view()
-
+// Define human reference genome path 
     human_ref_ch=Channel.fromPath(params.human_genome)
 
+// Index human reference genome
     indexed_ch=HUMAN_INDEX(human_ref_ch)
 
-    //indexed_ch.view()
 
+// combine indexed reads output with the collated input data
     indexed_reads_ch=collate_ch.combine(indexed_ch)
 
+
+// Retrieve unmapped reads 
     MAPPING(indexed_reads_ch)
 
 
@@ -65,12 +69,12 @@ workflow {
             },
             db_ch)
  
-    SUMMARY(MASHSCREEN.out
+    
+        }
+        SUMMARY(MASHSCREEN.out
                 .results
                 .collect()
                 .view()
                 )
-        }
 
-       // SUMMARY(params.test_sum)
 }
