@@ -4,7 +4,7 @@ include { MASHSCREEN } 		from './modules/mash/mashscreen/main.nf'
 include { SUMMARY } 		from './modules/summary_module/main.nf'
 include { COLLATE }      from   './modules/collate/main.nf'
 include { HUMAN_INDEX }  from   './modules/minimap2/index/main.nf'
-//include { MAPPING }      from   './modules/minimap2/non_human_reads/main.nf'
+include { MAPPING }      from   './modules/minimap2/non_human_reads/main.nf'
 
 
 
