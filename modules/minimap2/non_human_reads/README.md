@@ -1,13 +1,13 @@
 # Mapping and removal of Human reads     
 
-## overview
-**This Module is for used to map sequencing  reads to the human genome and then filter out those mapping to obtain the non-human reads.**      
+## Overview
+**This module is used to map sequence fastq reads to the human genome and then filters out those mapping to obtain the non-human (unmapped) reads.**      
 
 ## Parameters  
 
 ### Input
-- **indexed human genome**: Takes a path to an already indexed human genome in the **(.fna,.fa)** format.   
-- **combined reads**: concatenated sequencing reads **(in .fastq format)** processed from the previous *_ collate module _*.    
+- **indexed human genome**: Takes the path to an already indexed human genome in the **(.fna,.fa)** format.   
+- **combined reads**: concatenated sequencing reads **(in .fastq format)** processed from the previous `collate module`.    
 
 ### Output
 - The expected output is the **non-human reads** in a **(.fastq)** format.
