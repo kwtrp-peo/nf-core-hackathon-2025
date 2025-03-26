@@ -50,7 +50,8 @@ workflow {
         db_ch= MASH_DB_DOWNLOAD(params.url)
         db_ch.view()
         MASHSCREEN(
-            input_ch.map{
+            MAPPING.out
+                .map{
                 file ->
                 def sample_id = file.baseName
                 return [sample_id,file]
@@ -61,7 +62,8 @@ workflow {
         else {
             db_ch = Channel.value(params.mash_sketch)
             MASHSCREEN(
-            input_ch.map{
+            MAPPING.out
+                .map{
                 file ->
                 def sample_id = file.baseName
                 return [sample_id,file]
