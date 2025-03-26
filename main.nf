@@ -4,12 +4,7 @@ include { MASHSCREEN } 		from './modules/mash/mashscreen/main.nf'
 include { SUMMARY } 		from './modules/summary_module/main.nf'
 include { COLLATE }      from   './modules/collate/main.nf'
 include { HUMAN_INDEX }  from   './modules/minimap2/index/main.nf'
-include { MAPPING }      from   './modules/minimap2/non_human_reads/main.nf'
-
-
-
-
-
+//include { MAPPING }      from   './modules/minimap2/non_human_reads/main.nf'
 
 
 
@@ -38,13 +33,14 @@ workflow {
 
     //indexed_ch.view()
 
-    indexed_reads_ch=collate_ch.combine(indexed_ch)
+    //indexed_reads_ch=collate_ch.combine(indexed_ch)
 
-    MAPPING(indexed_reads_ch)
+    //MAPPING(indexed_reads_ch)
 
 
 
     // Conditional database selection
+
 
     if (!params.skip_dbdownload) {
         db_ch= MASH_DB_DOWNLOAD(params.url)
