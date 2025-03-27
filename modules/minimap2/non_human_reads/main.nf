@@ -9,6 +9,7 @@ This process is used to index the human genome using the minimap2 command.
 process MAPPING {
     
    // container 'community.wave.seqera.io/library/minimap2:2.28--78db3d0b6e5cb797'
+   tag "Remove human reads"
     conda "${moduleDir}/environment.yml"
     publishDir "${params.outdir}", mode: 'copy'
    
