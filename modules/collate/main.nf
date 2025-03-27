@@ -1,6 +1,9 @@
 #!/usr/bin/env nextflow
 
+
+
 process COLLATE {
+    tag "collating reads"
     publishDir "${params.outdir}", mode: 'copy'
 
 
