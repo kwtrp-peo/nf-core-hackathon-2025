@@ -3,6 +3,7 @@ include { MASH_DB_DOWNLOAD } 	from './modules/mash/mash_db_download/main.nf'
 include { MASHSCREEN } 		from './modules/mash/mashscreen/main.nf' 
 include { SUMMARY } 		from './modules/summary_module/main.nf'
 include { COLLATE }      from   './modules/collate/main.nf'
+include { HUMAN_GENOME_DOWNLOAD }  from   './modules/human_db_download/main.nf'
 include { HUMAN_INDEX }  from   './modules/minimap2/index/main.nf'
 include { MAPPING }      from   './modules/minimap2/non_human_reads/main.nf'
 
@@ -24,17 +25,30 @@ workflow {
                     .map{ file -> def sample_id=file.getBaseName(2)
                     return [sample_id, file]}
                     .set{collate_ch}
+
+// Download human genome and index it
+    if(!params.skip_dbdownload) {
+        HUMAN_GENOME_DOWNLOAD(params.genomeurl).set { human_ref_ch }
+        //human_genome.view()
+        HUMAN_INDEX(human_ref_ch).set { indexed_ch }
+        
+
+    } else{
+
+        HUMAN_INDEX(Channel.fromPath(params.human_genome)).set { indexed_ch }
+    }
+    
                         
 
 // Define human reference genome path 
-    human_ref_ch=Channel.fromPath(params.human_genome)
+// human_ref_ch=Channel.fromPath(params.human_genome)
 
 // Index human reference genome
-    indexed_ch=HUMAN_INDEX(human_ref_ch)
+// indexed_ch=HUMAN_INDEX(human_ref_ch)
 
 
 // combine indexed reads output with the collated input data
-    indexed_reads_ch=collate_ch.combine(indexed_ch)
+    collate_ch.combine(indexed_ch).set{indexed_reads_ch}
 
 
 // Retrieve unmapped reads 

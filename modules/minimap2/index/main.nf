@@ -6,8 +6,11 @@
 This process is used to index the human genome using the minimap2 command.
 
 */
+
+
 process HUMAN_INDEX {
     
+   tag "Indexing human genome"
    conda "${moduleDir}/environment.yml"
    container 'oras://community.wave.seqera.io/library/minimap2:2.28--74e328e3ff3fa395'
 
